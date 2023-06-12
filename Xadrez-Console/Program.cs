@@ -15,7 +15,6 @@ namespace Xadrez_Console
                 tab.ColocarPeca(new Torre(Cor.Preto, tab), new Posicao(0, 0));
                 tab.ColocarPeca(new Torre(Cor.Preto, tab), new Posicao(1, 3));
                 tab.ColocarPeca(new Rei(Cor.Preto, tab), new Posicao(2, 4));
-                tab.ColocarPeca(new Torre(Cor.Preto, tab), new Posicao(2, 9));
 
 
                 Tela.ImprimirTabuleiro(tab);
