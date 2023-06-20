@@ -11,7 +11,7 @@ namespace tabuleiro
         public int Linhas { get; set; }
         public int Colunas { get; set; }
 
-        private Peca[,] pecas;
+        public Peca[,] pecas;
 
         public Tabuleiro(int linhas, int colunas)
         {
@@ -41,6 +41,7 @@ namespace tabuleiro
                 throw new Exception("Já existe peça nessa posição.");
                      
             pecas[pos.Linha, pos.Coluna] = p;
+            p.posicao = pos;
         }
 
         public Peca RemoverPeca(Posicao pos)
