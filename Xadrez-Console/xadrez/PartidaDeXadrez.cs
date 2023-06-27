@@ -10,15 +10,15 @@ namespace xadrez
     class PartidaDeXadrez
     {
         public Tabuleiro tab { get; private set; }
-        private int Turno;
-        private Cor JodadorAtual;
+        public int Turno { get; private set; }
+        public Cor JogadorAtual { get; private set; }
         public bool Terminada { get; private set; }
 
         public PartidaDeXadrez()
         {
             tab = new Tabuleiro(8,8);
             Turno = 1;
-            JodadorAtual = Cor.Branca;
+            JogadorAtual = Cor.Branca;
             Terminada = false;
             ColocarPecas();
         }
@@ -30,6 +30,46 @@ namespace xadrez
             Peca pecaCapturada = tab.RemoverPeca(destino);
 
             tab.ColocarPeca(p, destino);
+        }
+
+        public void ValidarPosicaoOrigem(Posicao pos)
+        {
+            if(tab.peca(pos) == null)
+            {
+                throw new TabuleiroException("Não existe peça nesta Posição escolhida");
+            }
+            if (JogadorAtual != tab.peca(pos).cor)
+            {
+                throw new TabuleiroException("A peça escolhida não é sua.");
+            }
+            if (!tab.peca(pos).ExisteMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Não existe movimentos possiveis para essa peça.");
+            }
+        }
+
+        public void ValidarPosicaoDestino(Posicao origem, Posicao destino)
+        {
+            if (!tab.peca(origem).podeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida.");
+            }
+        }
+
+        public void RealizaJogada(Posicao origem, Posicao destino)
+        {
+            ExecutaMovimento(origem, destino);
+            Turno++;
+            MudaJogador();
+            
+        }
+
+        private void MudaJogador()
+        {
+            if (JogadorAtual == Cor.Branca)
+                JogadorAtual = Cor.Preto;
+            else
+                JogadorAtual = Cor.Branca;
         }
 
         private void ColocarPecas() 

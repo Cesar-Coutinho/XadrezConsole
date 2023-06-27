@@ -70,6 +70,7 @@ namespace Xadrez_Console
 
         public static PosicaoXadrez LerPosicaoXadrez()
         {
+
             string s = Console.ReadLine();
 
             char coluna = s[0];
