@@ -93,9 +93,9 @@ namespace Xadrez_Console
             Console.WriteLine("Pecas capturadas: ");
             Console.Write("Brancas: ");
             ImprimirConjunto(partida.PecasCapturas(Cor.Branca));
-            //Console.WriteLine();
             Console.Write("Pretas: ");
             ImprimirConjunto(partida.PecasCapturas(Cor.Preto));
+            Console.WriteLine();
         }
 
         public static void ImprimirConjunto(HashSet<Peca> pecas)
