@@ -84,7 +84,19 @@ namespace Xadrez_Console
             Console.WriteLine();
             ImprimirPecasCapturadas(partida);
             Console.WriteLine("Turno: " + partida.Turno);
-            Console.WriteLine("Aguardando jogada das peças: " + partida.JogadorAtual);
+            if (!partida.Terminada)
+            {
+                Console.WriteLine("Aguardando jogada das peças: " + partida.JogadorAtual);
+                if (partida.xeque)
+                {
+                    Console.WriteLine("Xeque!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("XEQUEMATE");
+                Console.WriteLine($"vitória das {partida.JogadorAtual}");
+            }
 
         }
 
@@ -94,7 +106,7 @@ namespace Xadrez_Console
             Console.Write("Brancas: ");
             ImprimirConjunto(partida.PecasCapturas(Cor.Branca));
             Console.Write("Pretas: ");
-            ImprimirConjunto(partida.PecasCapturas(Cor.Preto));
+            ImprimirConjunto(partida.PecasCapturas(Cor.Preta));
             Console.WriteLine();
         }
 
